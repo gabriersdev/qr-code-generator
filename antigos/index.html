@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerar QR Code</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<body>
+  <div id="corpo">
+    <center><label for="texto" style="color:white;"><strong>Gerador de QR Code</strong></label><br><br>
+    <input type="text" name="texto" id="texto" required autofocus autocomplete="off"><br>
+    <a href="#bg"><button id="btn" name="btn" class="orange">Gerar</button></a></center>
+  </div>
+
+  <div id="bg"></div>
+  <div class="bg-conteudo">
+    <div class="bg-box">
+      <a href="" id="bg-close">X</a>	
+      <div class="bg-conteudo-modal">	
+        <img id="qrCode" src="https://api.qrserver.com/v1/create-qr-code/?data=Hello-World&size=250x250"></img>
+        <p style="color: white">
+          <a id="imgDownload" href="https://api.qrserver.com/v1/create-qr-code/?data=Hello-World&size=250x250" target="_blank" download="QR-Code"><button id="btn" name="btn" class="green">Baixar</button></a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
