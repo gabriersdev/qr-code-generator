@@ -8,11 +8,145 @@
 @import url(./cores.css);
 @import url(./variaveis.css);
 
+:root{
+  --bs-body-color: #FFF;
+}
+
 html{
   scroll-behavior: smooth;
 }
 
 body{
-  font-family: '', sans-serif;
+  font-family: 'Inter', sans-serif;
+  background-color: #000;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.container{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.card{
+  --bs-card-bg: rgba(255, 255, 255, 0.5) !important;
+}
+
+.card-header{
+  /* background-color: #1E1E1E; */
+  background: rgb(30,30,30);
+  background: linear-gradient(90deg, rgba(30,30,30,1) 0%, rgba(35,35,35,1) 50%, rgba(40,40,40,1) 100%);
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn{
+  color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn.disabled{
+  color: initial;
+  color: #FFF !important;
+  padding-right: 0;
+  font-size: 1.25rem;
+}
+
+.btn.dashed{
+  border-style: dashed;
+  border-right: unset;
+}
+
+.card-header .btn-compartilhar-app{
+  padding-right: 0.8rem;
+}
+
+input{
+  color: #FFF !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.card-header .btn-compartilhar-app:hover,
+.card-header .btn-compartilhar-app:focus,
+input:hover,
+input:focus{
+  color: #FFF !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.card-body{
+  background-color: #000;
+}
+
+.input-group-text{
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #FFF !important;
+}
+
+.card-body .btn-gerar-qr-code{
+  margin-top: 1rem;
+  width: 100%;
+  color: #FFF;
+  background-color: #1E90FF !important;
+  border-color: rgba(255, 255, 255, 0.2); 
+}
+
+.card-body .btn-gerar-qr-code:hover,
+.card-body .btn-gerar-qr-code:focus{
+  background-color: #0D6CCC !important;
+}
+
+.trnsp, .trnsp:focus, .trnsp:hover, .trnsp::placeholder{
+  background-color: transparent;
+  color: #FFF;
+}
+
+.modal-content{
+  background-color: #1E1E1E;
+}
+
+.modal-header{
+  border-color: rgba(255, 255, 255, 0.2); 
+}
+
+.modal-body .input-group{
+  margin-top: 1rem;
+}
+
+.texto-modal-body{
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.texto-modal-body .texto-reduzido{
+  /* font-size: 0.95rem; */
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem !important;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.65);
+  text-align: center;
+  border-radius: 5px;
+}
+
+#link-compartilhamento{
+  border-style: dashed;
+  border-left: unset;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+#link-compartilhamento:hover,
+#link-compartilhamento:focus{
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: initial !important;
+}
+
+#button-addon{
+  
+}

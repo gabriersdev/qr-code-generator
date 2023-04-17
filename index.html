@@ -38,7 +38,7 @@
 
   <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
 
-  <title>Gerar QR Code</title>
+  <title>Gerador de QR Code</title>
 
   <script src="./assets/js/frameworks/jquery.js" defer></script>
   <script src="./assets/js/frameworks/bootstrap.js" defer></script>
@@ -68,8 +68,55 @@
   </noscript>
 
   <main class="container">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia odit laudantium, a delectus quam suscipit nobis id, optio, numquam voluptatum odio ipsum amet sequi reprehenderit aliquid blanditiis molestiae sit voluptas?
+    <form class="card">
+      <div class="card-header">
+        <b>Gerador de QR Code</b>
+        <button type="button" class="btn btn-compartilhar-app"><i class="bi bi-share-fill"></i></button>
+      </div>
+      <div class="card-body">
+        <div class="input-group trnsp">
+          <span class="input-group-text trnsp"><i class="bi bi-qr-code"></i></span>
+          <div class="form-floating trnsp">
+            <input type="text" class="form-control trnsp" id="floating-input-group" placeholder="Seu texto aqui" required>
+            <label for="floating-input-group trnsp">Seu texto aqui</label>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-gerar-qr-code">Gerar</button>
+      </div>
+    </form>
   </main>
+
+  <div class="modal fade" id="modal-compartilhar-app" aria-hidden="true" aria-labelledby="modal-compartilhar-appLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modal-compartilhar-appLabel">Compartilhe</h1>
+          <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
+        </div>
+        <div class="modal-body">
+          <span class="texto-modal-body">
+            Compartilhe esta ideia! <br>
+            <span class="texto-reduzido">Copie o link ou favorite esta página com CTRL + D</span>
+          </span>
+          <div class="input-group">
+            <button class="btn btn-outline-secondary disabled dashed" disabled><i class="bi bi-link"></i></button>
+            <input type="text" class="form-control trnsp" id="link-compartilhamento" readonly placeholder="https://www.xxx.xxx.br">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon">Copiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script defer>
+    document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
+      $('#modal-compartilhar-app').modal('show')
+    })
+
+    document.querySelector('#button-addon').addEventListener('click', (evento) => {
+
+    })
+  </script>
   
 </body>
 </html>
