@@ -100,7 +100,7 @@
           </span>
           <div class="input-group">
             <button class="btn btn-outline-secondary disabled dashed" disabled><i class="bi bi-link"></i></button>
-            <input type="text" class="form-control trnsp" id="link-compartilhamento" readonly placeholder="https://www.xxx.xxx.br">
+            <input type="text" class="form-control trnsp" id="link-compartilhamento" readonly value="https://www.xxx.xxx.br">
             <button class="btn btn-outline-secondary" type="button" id="button-addon">Copiar</button>
           </div>
         </div>
@@ -114,7 +114,28 @@
     })
 
     document.querySelector('#button-addon').addEventListener('click', (evento) => {
+      const link = document.querySelector('#link-compartilhamento');
+      //isEmpty(link.value)
 
+      function success(){
+        link.closest('.modal-body').innerHTML += `<div class="mt-2 alert alert-success" style="height: min-content">Copiado!</div>`;
+        removerAlert();
+      }
+      
+      function error(){
+        link.closest('.modal-body').innerHTML += `<div class="mt-2 alert alert-danger" style="height: min-content">Erro!</div>`;
+        removerAlert()
+      }
+
+      function removerAlert(elemento){
+        setTimeout(() => {
+          document.querySelector('#modal-compartilhar-app').querySelector('div.alert').remove()
+        }, 3000)
+      }
+
+      window.navigator.clipboard
+        .writeText(link.value)
+        .then(success, error);
     })
   </script>
   
