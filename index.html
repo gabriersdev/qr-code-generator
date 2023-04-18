@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <!-- 
     <meta name="keywords" content="#">
     <meta name="author" content="Gabriel Ribeiro">
@@ -35,11 +35,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="stylesheet" href="./assets/css/frameworks/highlights-A11Y-dark.css">
-
+  
   <link rel="shortcut icon" href="./assets/img/favicon.png" type="image/x-icon">
-
+  
   <title>Gerador de QR Code</title>
-
+  
   <script src="./assets/js/frameworks/jquery.js" defer></script>
   <script src="./assets/js/frameworks/bootstrap.js" defer></script>
   <script src="./assets/js/frameworks/pooper.js" defer></script>
@@ -51,7 +51,7 @@
   <script type="module" src="./assets/js/script.js" defer></script>
 </head>
 <body>
-
+  
   <noscript>
     <div class="box-no-script">         
       <div class="texto-pagina-centralizado-alt">
@@ -66,7 +66,7 @@
       </div>
     </div>
   </noscript>
-
+  
   <main class="container">
     <form class="card">
       <div class="card-header">
@@ -85,7 +85,7 @@
       </div>
     </form>
   </main>
-
+  
   <div class="modal fade" id="modal-compartilhar-app" aria-hidden="true" aria-labelledby="modal-compartilhar-appLabel" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -93,7 +93,7 @@
           <h1 class="modal-title fs-5" id="modal-compartilhar-appLabel">Compartilhe</h1>
           <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" data-conteudo="modal-body">
           <span class="texto-modal-body">
             Compartilhe esta ideia! <br>
             <span class="texto-reduzido">Copie o link ou favorite esta página com CTRL + D</span>
@@ -101,42 +101,66 @@
           <div class="input-group">
             <button class="btn btn-outline-secondary disabled dashed" disabled><i class="bi bi-link"></i></button>
             <input type="text" class="form-control trnsp" id="link-compartilhamento" readonly value="https://www.xxx.xxx.br">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon">Copiar</button>
+            <button class="btn btn-outline-secondary" type="button" id="copiar-link-compartilhamento">Copiar</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+  
   <script defer>
     document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
       $('#modal-compartilhar-app').modal('show')
     })
+    
+    async function copiar(valor){
+      try{
+        await navigator.clipboard.writeText(valor);
+        return true;
+      }catch(error){
+        console.log(error);
+        return false;
+      }
+    }
 
-    document.querySelector('#button-addon').addEventListener('click', (evento) => {
+    async function feedback(conteudo){
+      const modal = document.querySelector('#modal-compartilhar-app').querySelector('[data-conteudo="modal-body"]');
+      // document.querySelector('.modal-body').innerHTML += conteudo;
+      // Usar document.createElement
+      console.log(conteudo);
+    }
+
+    const clickCopiar = () => document.querySelector('#copiar-link-compartilhamento').addEventListener('click', () => {
       const link = document.querySelector('#link-compartilhamento');
-      //isEmpty(link.value)
-
-      function success(){
-        link.closest('.modal-body').innerHTML += `<div class="mt-2 alert alert-success" style="height: min-content">Copiado!</div>`;
+      console.log('copiar')
+      
+      try{
+        
+        copiar(link.value).then((retorno) => {
+          if(retorno){
+            feedback(`<div class="mt-2 alert alert-success">Copiado!</div>`);
+          }else{
+            feedback(`<div class="mt-2 alert alert-danger">Erro!</div>`);
+          }
+        })
+        
+      }catch(error){
+        console.log(error)
+      }finally{
         removerAlert();
       }
       
-      function error(){
-        link.closest('.modal-body').innerHTML += `<div class="mt-2 alert alert-danger" style="height: min-content">Erro!</div>`;
-        removerAlert()
-      }
-
       function removerAlert(elemento){
+        console.log('chamado')
         setTimeout(() => {
-          document.querySelector('#modal-compartilhar-app').querySelector('div.alert').remove()
+          document.querySelector('#modal-compartilhar-app').querySelectorAll('div.alert').forEach(alert => {
+            alert.remove()
+          }) 
         }, 3000)
       }
-
-      window.navigator.clipboard
-        .writeText(link.value)
-        .then(success, error);
     })
+
+    clickCopiar();
   </script>
   
 </body>

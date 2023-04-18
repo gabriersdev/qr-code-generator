@@ -147,6 +147,19 @@ input:focus{
   background-color: initial !important;
 }
 
+#modal-compartilhar-app .alert{
+  padding: 0.75rem !important;
+  color: #FFF;
+}
+
+.alert-success{
+  background-color: rgb(4, 141, 4, 0.3);
+}
+
+.alert-danger{
+  background-color: rgb(255, 0, 0, 0.2);
+}
+
 #button-addon{
   
 }
