@@ -122,14 +122,17 @@
         return false;
       }
     }
-
-    async function feedback(conteudo){
+    
+    async function feedback(classes, conteudo){
       const modal = document.querySelector('#modal-compartilhar-app').querySelector('[data-conteudo="modal-body"]');
-      // document.querySelector('.modal-body').innerHTML += conteudo;
-      // Usar document.createElement
-      console.log(conteudo);
+      if(modal.querySelector('div.alert') == null){
+        const div = document.createElement('div');
+        div.classList.value = `${classes}`;
+        div.innerHTML = conteudo;
+        modal.appendChild(div)
+      }
     }
-
+    
     const clickCopiar = () => document.querySelector('#copiar-link-compartilhamento').addEventListener('click', () => {
       const link = document.querySelector('#link-compartilhamento');
       console.log('copiar')
@@ -138,9 +141,9 @@
         
         copiar(link.value).then((retorno) => {
           if(retorno){
-            feedback(`<div class="mt-2 alert alert-success">Copiado!</div>`);
+            feedback(`mt-2 alert alert-success`,'Copiado!');
           }else{
-            feedback(`<div class="mt-2 alert alert-danger">Erro!</div>`);
+            feedback(`mt-2 alert alert-alert`,'Erro!');
           }
         })
         
@@ -159,7 +162,7 @@
         }, 3000)
       }
     })
-
+    
     clickCopiar();
   </script>
   
