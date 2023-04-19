@@ -171,6 +171,12 @@ input:focus{
   flex-direction: column;
 }
 
+#modal-qr-code .modal-body img{
+  border: 15px solid #FFF;
+  border-radius: 5px;
+  max-width: calc(100% - 2rem);
+}
+
 #modal-qr-code #baixar-qr-code{
   width: min-content;
   margin: 0 auto;

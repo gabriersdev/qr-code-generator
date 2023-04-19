@@ -100,7 +100,7 @@
           </span>
           <div class="input-group">
             <button class="btn btn-outline-secondary disabled dashed" disabled><i class="bi bi-link"></i></button>
-            <input type="text" class="form-control trnsp" id="link-compartilhamento" readonly value="https://www.xxx.xxx.br">
+            <input type="url" class="form-control trnsp" id="link-compartilhamento" readonly value="https://www.xxx.xxx.br">
             <button class="btn btn-outline-secondary" type="button" id="copiar-link-compartilhamento">Copiar</button>
           </div>
         </div>
@@ -116,11 +116,6 @@
           <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
         </div>
         <div class="modal-body" data-conteudo="modal-body">
-          <div>
-            <div class="spinner-border" role="status">
-              <span class="visually-hidden">Loading...</span>
-            </div>
-          </div>
           <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" loading="lazy" data-conteudo="imagem-gerada" alt="" title="">
           <div class="input-group">
             <button class="btn btn-outline-secondary" type="button" id="baixar-qr-code">Baixar</button>
@@ -130,32 +125,46 @@
     </div>
   </div>
   
-  <script defer>
-    window.addEventListener('load', () => {
-      // $('#modal-qr-code').modal('show');
-    })
+  <script defer type="module">
+    import { isEmpty } from './assets/js/modulos/utilitarios.js';
     
     document.querySelector('.btn-gerar-qr-code').addEventListener('click', (evento) => {
       evento.preventDefault();
-      const conteudo = document.querySelector('[data-conteudo="texto"]').value.trim();
-      //isEmpty
+      const conteudo = document.querySelector('[data-conteudo="texto"]');
+      const valor = conteudo.value.trim();
       
-      if(conteudo !== null){
-        if(conteudo.length <= 1750){
+      if(!isEmpty(valor)){
+        if(valor.length <= 1750){
           const img = document.querySelector('[data-conteudo="imagem-gerada"]');
           if(img !== null){
-            img.setAttribute('src', `https://api.qrserver.com/v1/create-qr-code/?data=${conteudo}&amp;size=100x100`);
+            img.setAttribute('src', `https://api.qrserver.com/v1/create-qr-code/?data=${valor}&amp;size=100x100`);
             $('#modal-qr-code').modal('show');
           }else{
             console.log('Link muito grande...');
           }
         }
+      }else{
+        conteudo.value = '';
+        conteudo.focus();
       }
     })
 
     
-    /* Copiar Link de compartilhamento */
+    /* Link de compartilhamento */
     
+    const atualizarLink = () => {
+      const link = document.querySelector('#link-compartilhamento');
+
+      try{
+
+        const url = new URL(window.location).origin;
+        link.value = !isEmpty(url) ? url.toLowerCase().trim() : 'Link não atribuído'
+
+      }catch(error){
+        console.log(error);
+      }
+    }
+
     document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
       $('#modal-compartilhar-app').modal('show')
     })
@@ -165,7 +174,7 @@
         await navigator.clipboard.writeText(valor);
         return true;
       }catch(error){
-        console.log(error);
+        // console.log(error);
         return false;
       }
     }
@@ -182,7 +191,6 @@
     
     const clickCopiar = () => document.querySelector('#copiar-link-compartilhamento').addEventListener('click', () => {
       const link = document.querySelector('#link-compartilhamento');
-      console.log('copiar')
       
       try{
         
@@ -201,15 +209,15 @@
       }
       
       function removerAlert(elemento){
-        console.log('chamado')
         setTimeout(() => {
           document.querySelector('#modal-compartilhar-app').querySelectorAll('div.alert').forEach(alert => {
-            alert.remove()
+            alert.remove();
           }) 
         }, 3000)
       }
     })
     
+    atualizarLink();
     clickCopiar();
   </script>
   
