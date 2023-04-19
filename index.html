@@ -77,7 +77,7 @@
         <div class="input-group trnsp">
           <span class="input-group-text trnsp"><i class="bi bi-qr-code"></i></span>
           <div class="form-floating trnsp">
-            <input type="text" class="form-control trnsp" id="floating-input-group" placeholder="Seu texto aqui" required>
+            <input type="text" class="form-control trnsp" id="floating-input-group" data-conteudo="texto" placeholder="Seu texto aqui" required>
             <label for="floating-input-group trnsp">Seu texto aqui</label>
           </div>
         </div>
@@ -108,7 +108,54 @@
     </div>
   </div>
   
+  <div class="modal fade" id="modal-qr-code" aria-hidden="true" aria-labelledby="modal-qr-code-appLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modal-qr-code-appLabel">QR Code</h1>
+          <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
+        </div>
+        <div class="modal-body" data-conteudo="modal-body">
+          <div>
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" loading="lazy" data-conteudo="imagem-gerada" alt="" title="">
+          <div class="input-group">
+            <button class="btn btn-outline-secondary" type="button" id="baixar-qr-code">Baixar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <script defer>
+    window.addEventListener('load', () => {
+      // $('#modal-qr-code').modal('show');
+    })
+    
+    document.querySelector('.btn-gerar-qr-code').addEventListener('click', (evento) => {
+      evento.preventDefault();
+      const conteudo = document.querySelector('[data-conteudo="texto"]').value.trim();
+      //isEmpty
+      
+      if(conteudo !== null){
+        if(conteudo.length <= 1750){
+          const img = document.querySelector('[data-conteudo="imagem-gerada"]');
+          if(img !== null){
+            img.setAttribute('src', `https://api.qrserver.com/v1/create-qr-code/?data=${conteudo}&amp;size=100x100`);
+            $('#modal-qr-code').modal('show');
+          }else{
+            console.log('Link muito grande...');
+          }
+        }
+      }
+    })
+
+    
+    /* Copiar Link de compartilhamento */
+    
     document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
       $('#modal-compartilhar-app').modal('show')
     })

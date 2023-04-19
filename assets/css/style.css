@@ -163,3 +163,15 @@ input:focus{
 #button-addon{
   
 }
+
+#modal-qr-code .modal-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#modal-qr-code #baixar-qr-code{
+  width: min-content;
+  margin: 0 auto;
+}
