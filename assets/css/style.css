@@ -25,6 +25,10 @@ body{
   justify-content: center;
 }
 
+.none{
+  display: none;
+}
+
 .container{
   margin-top: 5rem;
   margin-bottom: 5rem;

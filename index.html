@@ -42,6 +42,7 @@
   
   <script src="./assets/js/frameworks/jquery.js" defer></script>
   <script src="./assets/js/frameworks/bootstrap.js" defer></script>
+  <script src="./assets/js/frameworks/html2canvas.min.js" defer></script>
   <script type="module" src="./assets/js/script.js" defer></script>
 </head>
 <body>
@@ -114,6 +115,7 @@
           <div class="input-group">
             <button class="btn btn-outline-secondary" type="button" id="baixar-qr-code">Baixar</button>
           </div>
+          <a href="#" class="none" download="QR-Code.png" data-acao="download-capture"></a>
         </div>
       </div>
     </div>
@@ -142,9 +144,15 @@
         conteudo.focus();
       }
     })
-
+    
     document.querySelector('#baixar-qr-code').addEventListener('click', (evento) => {
-      evento.preventDefault()
+      evento.preventDefault();
+      
+      const img = document.querySelector('[data-conteudo="imagem-gerada"]');
+      // const download_capture = document.querySelector('a[data-acao="download-capture"]');
+      window.location.href = img.getAttribute('src');
+      // download_capture.setAttribute('src', img.getAttribute('src'));
+      // download_capture.click();
     })
     
     
