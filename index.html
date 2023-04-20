@@ -42,12 +42,6 @@
   
   <script src="./assets/js/frameworks/jquery.js" defer></script>
   <script src="./assets/js/frameworks/bootstrap.js" defer></script>
-  <script src="./assets/js/frameworks/pooper.js" defer></script>
-  <script src="./assets/js/frameworks/simple-mask-money.js" defer></script>
-  <script src="./assets/js/frameworks/highlights.js" defer></script>
-  <script src="./assets/js/frameworks/sweet-alert.js" defer></script>
-  <script src="./assets/js/frameworks/jquery-mask.js" defer></script>
-  <script src="./assets/js/frameworks/moment.js" defer></script>
   <script type="module" src="./assets/js/script.js" defer></script>
 </head>
 <body>
@@ -149,22 +143,23 @@
       }
     })
 
+    document.querySelector('#baixar-qr-code').addEventListener('click', (evento) => {
+      evento.preventDefault()
+    })
+    
     
     /* Link de compartilhamento */
-    
     const atualizarLink = () => {
       const link = document.querySelector('#link-compartilhamento');
-
+      
       try{
-
         const url = new URL(window.location).origin;
         link.value = !isEmpty(url) ? url.toLowerCase().trim() : 'Link não atribuído'
-
       }catch(error){
         console.log(error);
       }
     }
-
+    
     document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
       $('#modal-compartilhar-app').modal('show')
     })
