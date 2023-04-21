@@ -73,7 +73,7 @@
             <label for="floating-input-group trnsp">Seu texto aqui</label>
           </div>
         </div>
-        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" data-callback='onSubmit' data-action='submit'>Gerar</button>
+        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" data-callback='onClick' data-action='submit'>Gerar</button>
       </div>
     </form>
   </main>
@@ -125,11 +125,6 @@
       evento.preventDefault();
       const conteudo = document.querySelector('[data-conteudo="texto"]');
       const valor = conteudo.value.trim();
-      
-      grecaptcha.execute('6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG', {action: 'submit'}).then(function(token) {
-        console.log(token);
-        //
-      });
 
       if(!isEmpty(valor)){
         if(valor.length <= 1750){
