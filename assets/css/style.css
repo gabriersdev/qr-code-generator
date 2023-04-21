@@ -4,9 +4,10 @@
 @import url(./normalize.css);
 @import url(./reset.css);
 
-@import url(./elementos/no-script.css);
-@import url(./cores.css);
 @import url(./variaveis.css);
+
+@import url(./elementos/no-script.css);
+@import url(./elementos/modal.css);
 
 html{
   scroll-behavior: smooth;
@@ -110,76 +111,6 @@ input:focus{
 .trnsp, .trnsp:focus, .trnsp:hover, .trnsp::placeholder{
   background-color: transparent;
   color: var(--branco);
-}
-
-.modal-content{
-  background-color: var(--cinza);
-}
-
-.modal-header{
-  border-color: var(--branco-20); 
-}
-
-.modal-body .input-group{
-  margin-top: 1rem;
-}
-
-.texto-modal-body{
-  color: var(--branco-80);
-}
-
-.texto-modal-body .texto-reduzido{
-  /* font-size: 0.95rem; */
-  display: block;
-  margin-top: 0.5rem;
-  padding: 0.5rem !important;
-  background-color: var(--branco-05);
-  color: var(--branco-65);
-  text-align: center;
-  border-radius: 5px;
-}
-
-#link-compartilhamento{
-  border-style: dashed;
-  border-left: unset;
-    border-color: var(--branco-20) !important;
-}
-
-#link-compartilhamento:hover,
-#link-compartilhamento:focus{
-  border-color: var(--branco-20) !important;
-  background-color: initial !important;
-}
-
-#modal-compartilhar-app .alert{
-  padding: 0.75rem !important;
-  color: var(--branco);
-}
-
-.alert-success{
-  background-color: var(--verde);
-}
-
-.alert-danger{
-  background-color: var(--vermelho);
-}
-
-#modal-qr-code .modal-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-
-#modal-qr-code .modal-body img{
-  border: 15px solid var(--branco);
-  border-radius: 5px;
-  max-width: calc(100% - 2rem);
-}
-
-#modal-qr-code #baixar-qr-code{
-  width: min-content;
-  margin: 0 auto;
 }
 
 .icon.error{
