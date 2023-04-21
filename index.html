@@ -5,27 +5,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
+  <meta name="keywords" content="QR; Code; Gerador; Código">
+  <meta name="author" content="Gabriel Ribeiro">
+  <meta property="og:title" content="Gerador de QR Code">
+  <meta property="og:description" content="Gerador de QR Code a partir de textos do usuário, usando a API">
+  <meta property="og:url" content="#">
+  <meta property="og:image" content="#">
+  <meta property="og:image:secure_url" content="#"> 
+  <meta property="og:image:type" content="image/png"> 
+  <meta property="og:image:width" content="400"> 
+  <meta property="og:image:height" content="300"> 
   
-    <meta name="keywords" content="QR; Code; Gerador; Código">
-    <meta name="author" content="Gabriel Ribeiro">
-    <meta property="og:title" content="Gerador de QR Code">
-    <meta property="og:description" content="Gerador de QR Code a partir de textos do usuário, usando a API">
-    <meta property="og:url" content="#">
-    <meta property="og:image" content="#">
-    <meta property="og:image:secure_url" content="#"> 
-    <meta property="og:image:type" content="image/png"> 
-    <meta property="og:image:width" content="400"> 
-    <meta property="og:image:height" content="300"> 
-    
-    <meta http-equiv="Content-Security-Policy" 
-    content="default-src 'self' 'unsafe-inline'; 
-    style-src 'self' 'unsafe-inline'; 
-    style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
-    img-src 'self' 'unsafe-inline' https://api.qrserver.com; 
-    font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://cdn.jsdelivr.net/; 
-    script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/ https://code.jquery.com/ https://cdnjs.cloudflare.com/; 
-    frame-src 'self' 'unsafe-inline';
-    connect-src 'self' 'unsafe-inline';">   
+  <meta http-equiv="Content-Security-Policy" 
+  content="default-src 'self' 'unsafe-inline'; 
+  style-src 'self' 'unsafe-inline'; 
+  style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  img-src 'self' 'unsafe-inline' https://api.qrserver.com; 
+  font-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://cdn.jsdelivr.net/; 
+  script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net/ https://code.jquery.com/ https://cdnjs.cloudflare.com/ https://www.google.com/ https://www.gstatic.com/; 
+  frame-src 'self' 'unsafe-inline' https://www.google.com/;
+  connect-src 'self' 'unsafe-inline';">   
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +39,7 @@
   <script src="./assets/js/frameworks/jquery.js" defer></script>
   <script src="./assets/js/frameworks/bootstrap.js" defer></script>
   <script src="./assets/js/frameworks/html2canvas.min.js" defer></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" defer></script>
   <script type="module" src="./assets/js/script.js" defer></script>
 </head>
 <body>
@@ -73,6 +73,7 @@
             <label for="floating-input-group trnsp">Seu texto aqui</label>
           </div>
         </div>
+        <button class="g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'>Submit</button>
         <button type="submit" class="btn btn-gerar-qr-code">Gerar</button>
       </div>
     </form>
@@ -219,6 +220,17 @@
     
     atualizarLink();
     clickCopiar();
+    
+    /* Recapcha */
+    function onClick(e) {
+      e.preventDefault();
+      grecaptcha.ready(function() {
+        grecaptcha.execute('reCAPTCHA_site_key', {action: 'submit'}).then(function(token) {
+          console.log(token);
+          // Add your logic to submit to your backend server here.
+        });
+      });
+    }
   </script>
   
 </body>
