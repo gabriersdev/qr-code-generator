@@ -41,6 +41,11 @@
   <script src="./assets/js/frameworks/html2canvas.min.js" defer></script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" defer></script>
   <script type="module" src="./assets/js/script.js" defer></script>
+  
+  <script>
+    /* Função reCaptcha */
+    function onClick(e) {e.preventDefault();grecaptcha.ready(function() {grecaptcha.execute('6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG', {action: 'submit'}).then(function(token) {});});}
+  </script>
 </head>
 <body>
   
@@ -58,181 +63,14 @@
       </div>
     </div>
   </noscript>
-  
-  <main class="container">
-    <form class="card">
-      <div class="card-header">
-        <b>Gerador de QR Code</b>
-        <button type="button" class="btn btn-compartilhar-app"><i class="bi bi-share-fill"></i></button>
+
+  <main class="container" data-conteudo="area-loading-conteudo">
+    <div class="alert alert-loading d-flex align-items-center justify-content-center" role="alert">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-      <div class="card-body">
-        <div class="input-group trnsp">
-          <span class="input-group-text trnsp"><i class="bi bi-qr-code"></i></span>
-          <div class="form-floating trnsp">
-            <input type="text" class="form-control trnsp" id="floating-input-group" data-conteudo="texto" placeholder="Seu texto aqui" autocomplete="off" required>
-            <label for="floating-input-group trnsp">Seu texto aqui</label>
-          </div>
-        </div>
-        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" data-callback='onClick' data-action='submit'>Gerar</button>
-      </div>
-    </form>
+    </div>
   </main>
-  
-  <div class="modal fade" id="modal-compartilhar-app" aria-hidden="true" aria-labelledby="modal-compartilhar-appLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modal-compartilhar-appLabel">Compartilhe</h1>
-          <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
-        </div>
-        <div class="modal-body" data-conteudo="modal-body">
-          <span class="texto-modal-body">
-            Compartilhe esta ideia! <br>
-            <span class="texto-reduzido">Copie o link ou favorite esta página com CTRL + D</span>
-          </span>
-          <div class="input-group">
-            <button class="btn btn-outline-secondary disabled dashed" disabled><i class="bi bi-link"></i></button>
-            <input type="url" class="form-control trnsp" id="link-compartilhamento" readonly value="https://www.xxx.xxx.br">
-            <button class="btn btn-outline-secondary" type="button" id="copiar-link-compartilhamento">Copiar</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="modal fade" id="modal-qr-code" aria-hidden="true" aria-labelledby="modal-qr-code-appLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="modal-qr-code-appLabel">QR Code</h1>
-          <button data-modal-fecha><i class='bi bi-x-lg'></i></button>
-        </div>
-        <div class="modal-body" data-conteudo="modal-body">
-          <img src="https://api.qrserver.com/v1/create-qr-code/?data=HelloWorld&amp;size=100x100" loading="lazy" data-conteudo="imagem-gerada" alt="" title="">
-          <div class="input-group">
-            <button class="btn btn-outline-secondary" type="button" id="baixar-qr-code">Baixar</button>
-          </div>
-          <a href="#" class="none" download="QR-Code.png" data-acao="download-capture"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script defer type="module">
-    import { isEmpty } from './assets/js/modulos/utilitarios.js';
-    
-    window.onClick = onClick;
-    
-    document.querySelector('.btn-gerar-qr-code').addEventListener('click', (evento) => {
-      evento.preventDefault();
-      const conteudo = document.querySelector('[data-conteudo="texto"]');
-      const valor = conteudo.value.trim();
-      
-      if(!isEmpty(valor)){
-        if(valor.length <= 1750){
-          const img = document.querySelector('[data-conteudo="imagem-gerada"]');
-          if(img !== null){
-            img.setAttribute('src', `https://api.qrserver.com/v1/create-qr-code/?data=${valor}&amp;size=100x100`);
-            $('#modal-qr-code').modal('show');
-          }else{
-            console.log('Link muito grande...');
-          }
-        }
-      }else{
-        conteudo.value = '';
-        conteudo.focus();
-      }
-    })
-    
-    document.querySelector('#baixar-qr-code').addEventListener('click', (evento) => {
-      evento.preventDefault();
-      
-      const img = document.querySelector('[data-conteudo="imagem-gerada"]');
-      // const download_capture = document.querySelector('a[data-acao="download-capture"]');
-      window.location.href = img.getAttribute('src');
-      // download_capture.setAttribute('src', img.getAttribute('src'));
-      // download_capture.click();
-    })
-    
-    
-    /* Link de compartilhamento */
-    const atualizarLink = () => {
-      const link = document.querySelector('#link-compartilhamento');
-      
-      try{
-        const url = new URL(window.location).origin;
-        link.value = !isEmpty(url) ? url.toLowerCase().trim() : 'Link não atribuído'
-      }catch(error){
-        console.log(error);
-      }
-    }
-    
-    document.querySelector('.btn-compartilhar-app').addEventListener('click', (evento) => {
-      $('#modal-compartilhar-app').modal('show')
-    })
-    
-    async function copiar(valor){
-      try{
-        await navigator.clipboard.writeText(valor);
-        return true;
-      }catch(error){
-        // console.log(error);
-        return false;
-      }
-    }
-    
-    async function feedback(classes, conteudo){
-      const modal = document.querySelector('#modal-compartilhar-app').querySelector('[data-conteudo="modal-body"]');
-      if(modal.querySelector('div.alert') == null){
-        const div = document.createElement('div');
-        div.classList.value = `${classes}`;
-        div.innerHTML = conteudo;
-        modal.appendChild(div)
-      }
-    }
-    
-    const clickCopiar = () => document.querySelector('#copiar-link-compartilhamento').addEventListener('click', () => {
-      const link = document.querySelector('#link-compartilhamento');
-      
-      try{
-        copiar(link.value).then((retorno) => {
-          if(retorno){
-            feedback(`mt-2 alert alert-success`,'Copiado!');
-          }else{
-            feedback(`mt-2 alert alert-alert`,'Erro!');
-          }
-        })
-        
-      }catch(error){
-        console.log(error)
-      }finally{
-        removerAlert();
-      }
-      
-      function removerAlert(elemento){
-        setTimeout(() => {
-          document.querySelector('#modal-compartilhar-app').querySelectorAll('div.alert').forEach(alert => {
-            alert.remove();
-          }) 
-        }, 3000)
-      }
-    })
-    
-    atualizarLink();
-    clickCopiar();
-  </script>
-  
-  <script>
-    /* Recapcha */
-    function onClick(e) {
-      e.preventDefault();
-      grecaptcha.ready(function() {
-        grecaptcha.execute('6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG', {action: 'submit'}).then(function(token) {
-          //
-        });
-      });
-    }
-  </script>
   
 </body>
 </html>
