@@ -4,24 +4,28 @@ import { conteudos } from './modulos/conteudos.js';
 import { isEmpty } from './modulos/utilitarios.js';
 
 (() => {
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+  function tooltips(){
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  }
   
-  $(document).ready(function(){
+  function popover(){
     $('[data-bs-toggle="popover"]').popover();  
-  });
+  }
   
   window.addEventListener('load', () => {
     const body = document.querySelector('body');
     try{
       try{body.innerHTML += conteudos.html_base;}catch(error){};
       clickGerar();
+      clickReset();
       clickBaixar();
       atualizarLink();
       clickCompartilharApp();
       clickCopiar();
       controleFechamentoModal();
+      tooltips();
     }catch(error){
       body.innerHTML += conteudos.erro_carregamento;
     }finally{
@@ -49,7 +53,7 @@ import { isEmpty } from './modulos/utilitarios.js';
   window.onClick = onClick;
   
   const clickGerar = () => {
-    document.querySelector('.btn-gerar-qr-code').addEventListener('click', (evento) => {
+    document.querySelector('form').addEventListener('submit', (evento) => {
       evento.preventDefault();
       const conteudo = document.querySelector('[data-conteudo="texto"]');
       const valor = conteudo.value.trim();
@@ -68,6 +72,12 @@ import { isEmpty } from './modulos/utilitarios.js';
         conteudo.value = '';
         conteudo.focus();
       }
+    })
+  }
+
+  const clickReset = () => {
+    document.querySelector('form').addEventListener('reset', () => {
+      document.querySelector('[data-conteudo="texto"]').focus();
     })
   }
   

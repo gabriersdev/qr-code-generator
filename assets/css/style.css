@@ -13,8 +13,11 @@ html{
   scroll-behavior: smooth;
 }
 
-body{
+*{
   font-family: 'Inter', sans-serif;
+}
+
+body{
   background-color: var(--preto);
   height: 100vh;
   display: flex;
@@ -70,6 +73,10 @@ body{
   padding-right: 0.8rem;
 }
 
+.input-group.trnsp button{
+  border-left: unset;
+}
+
 input{
   color: var(--branco) !important;
   border-color: var(--branco-20) !important;
@@ -120,4 +127,11 @@ input:focus{
 .link-visivel{
   color: var(--azul);
   text-decoration: underline;
+}
+
+.custom-tooltip{
+  --bs-tooltip-bg: var(--cinza-claro) !important;
+  --bs-tooltip-color: var(--branco) !important;
+  --bs-tooltip-opacity: 1;
+  --bs-tooltip-margin: 1rem;
 }
