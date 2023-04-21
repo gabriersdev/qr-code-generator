@@ -9,7 +9,18 @@
 @import url(./variaveis.css);
 
 :root{
-  --bs-body-color: #FFF;
+  --preto: #000;
+  --cinza: #1E1E1E;
+  --branco: #FFF;
+
+  --verde: rgb(4, 141, 4, 0.3);
+  --vermelho-solido: #FF0000;
+  --vermelho: rgb(255, 0, 0, 0.2);
+
+  --azul: #1E90FF;
+  --azul-escuro: #0D6CCC;
+
+  --bs-body-color: var(--branco);
 }
 
 html{
@@ -18,7 +29,7 @@ html{
 
 body{
   font-family: 'Inter', sans-serif;
-  background-color: #000;
+  background-color: var(--preto);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -60,7 +71,7 @@ body{
 
 .btn.disabled{
   color: initial;
-  color: #FFF !important;
+  color: var(--branco) !important;
   padding-right: 0;
   font-size: 1.25rem;
 }
@@ -75,7 +86,7 @@ body{
 }
 
 input{
-  color: #FFF !important;
+  color: var(--branco) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
@@ -83,7 +94,7 @@ input{
 .card-header .btn-compartilhar-app:focus,
 input:hover,
 input:focus{
-  color: #FFF !important;
+  color: var(--branco) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   background-color: rgba(255, 255, 255, 0.1) !important;
   outline: none !important;
@@ -91,34 +102,34 @@ input:focus{
 }
 
 .card-body{
-  background-color: #000;
+  background-color: var(--preto);
 }
 
 .input-group-text{
   border-color: rgba(255, 255, 255, 0.2) !important;
-  color: #FFF !important;
+  color: var(--branco) !important;
 }
 
 .card-body .btn-gerar-qr-code{
   margin-top: 1rem;
   width: 100%;
-  color: #FFF;
-  background-color: #1E90FF !important;
+  color: var(--branco);
+  background-color: var(--azul) !important;
   border-color: rgba(255, 255, 255, 0.2); 
 }
 
 .card-body .btn-gerar-qr-code:hover,
 .card-body .btn-gerar-qr-code:focus{
-  background-color: #0D6CCC !important;
+  background-color: var(--azul-escuro) !important;
 }
 
 .trnsp, .trnsp:focus, .trnsp:hover, .trnsp::placeholder{
   background-color: transparent;
-  color: #FFF;
+  color: var(--branco);
 }
 
 .modal-content{
-  background-color: #1E1E1E;
+  background-color: var(--cinza);
 }
 
 .modal-header{
@@ -158,19 +169,15 @@ input:focus{
 
 #modal-compartilhar-app .alert{
   padding: 0.75rem !important;
-  color: #FFF;
+  color: var(--branco);
 }
 
 .alert-success{
-  background-color: rgb(4, 141, 4, 0.3);
+  background-color: var(--verde);
 }
 
 .alert-danger{
-  background-color: rgb(255, 0, 0, 0.2);
-}
-
-#button-addon{
-  
+  background-color: var(--vermelho);
 }
 
 #modal-qr-code .modal-body{
@@ -181,7 +188,7 @@ input:focus{
 }
 
 #modal-qr-code .modal-body img{
-  border: 15px solid #FFF;
+  border: 15px solid var(--branco);
   border-radius: 5px;
   max-width: calc(100% - 2rem);
 }
@@ -192,10 +199,10 @@ input:focus{
 }
 
 .icon.error{
-  color: #FF0000;
+  color: var(--vermelho-solido);
 }
 
 .link-visivel{
-  color: #1E90FF;
+  color: var(--azul);
   text-decoration: underline;
 }
