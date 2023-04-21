@@ -73,8 +73,7 @@
             <label for="floating-input-group trnsp">Seu texto aqui</label>
           </div>
         </div>
-        <button type="button" class="g-recaptcha" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'></button>
-        <button type="submit" class="btn btn-gerar-qr-code">Gerar</button>
+        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'>Gerar</button>
       </div>
     </form>
   </main>
@@ -193,8 +192,12 @@
     const clickCopiar = () => document.querySelector('#copiar-link-compartilhamento').addEventListener('click', () => {
       const link = document.querySelector('#link-compartilhamento');
       
+      grecaptcha.execute('6LfrZqUlAAAAAHMYOi5V715vh6WW1abepxa-IXf1', {action: 'submit'}).then(function(token) {
+        console.log(token);
+        // Add your logic to submit to your backend server here.
+      });
+      
       try{
-        
         copiar(link.value).then((retorno) => {
           if(retorno){
             feedback(`mt-2 alert alert-success`,'Copiado!');
@@ -225,7 +228,7 @@
     function onClick(e) {
       e.preventDefault();
       grecaptcha.ready(function() {
-        grecaptcha.execute('reCAPTCHA_site_key', {action: 'submit'}).then(function(token) {
+        grecaptcha.execute('6LfrZqUlAAAAAHMYOi5V715vh6WW1abepxa-IXf1', {action: 'submit'}).then(function(token) {
           console.log(token);
           // Add your logic to submit to your backend server here.
         });
