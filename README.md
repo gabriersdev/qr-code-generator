@@ -15,4 +15,5 @@ Cria códigos QR usando a API QR Server e recursos básicos de Programação WEB
 - Bootstrap
 - Bootstrap Icons
 - QR Server
+- jQuery
 - Google Fonts
