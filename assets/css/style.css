@@ -31,27 +31,26 @@ body{
 }
 
 .alert-loading{
-  background-color: rgb(255, 255, 255, 0.1);
-  border: 1px solid rgb(255, 255, 255, 0.1);
+  background-color: var(--branco-10);
+  border: 1px solid var(--branco-10);
 }
 
 .card{
-  --bs-card-bg: rgba(255, 255, 255, 0.5) !important;
+  --bs-card-bg: var(--branco-50) !important;
 }
 
 .card-header{
-  /* background-color: #1E1E1E; */
-  background: rgb(30,30,30);
+  background: var(--cinza);
   background: linear-gradient(90deg, #1E1E1E 0%, #232323 50%, #282828 100%);
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--branco-20) !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .btn{
-  color: rgba(255, 255, 255, 0.5);
-  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--branco-50);
+  border-color: var(--branco-20);
 }
 
 .btn.disabled{
@@ -72,7 +71,7 @@ body{
 
 input{
   color: var(--branco) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--branco-20) !important;
 }
 
 .card-header .btn-compartilhar-app:hover,
@@ -80,8 +79,8 @@ input{
 input:hover,
 input:focus{
   color: var(--branco) !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: var(--branco-30) !important;
+  background-color: var(--branco-10) !important;
   outline: none !important;
   box-shadow: none !important;
 }
@@ -91,7 +90,7 @@ input:focus{
 }
 
 .input-group-text{
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--branco-20) !important;
   color: var(--branco) !important;
 }
 
@@ -100,7 +99,7 @@ input:focus{
   width: 100%;
   color: var(--branco);
   background-color: var(--azul) !important;
-  border-color: rgba(255, 255, 255, 0.2); 
+  border-color: var(--branco-20); 
 }
 
 .card-body .btn-gerar-qr-code:hover,
@@ -118,7 +117,7 @@ input:focus{
 }
 
 .modal-header{
-  border-color: rgba(255, 255, 255, 0.2); 
+  border-color: var(--branco-20); 
 }
 
 .modal-body .input-group{
@@ -126,7 +125,7 @@ input:focus{
 }
 
 .texto-modal-body{
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--branco-80);
 }
 
 .texto-modal-body .texto-reduzido{
@@ -134,8 +133,8 @@ input:focus{
   display: block;
   margin-top: 0.5rem;
   padding: 0.5rem !important;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.65);
+  background-color: var(--branco-05);
+  color: var(--branco-65);
   text-align: center;
   border-radius: 5px;
 }
@@ -143,12 +142,12 @@ input:focus{
 #link-compartilhamento{
   border-style: dashed;
   border-left: unset;
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: var(--branco-20) !important;
 }
 
 #link-compartilhamento:hover,
 #link-compartilhamento:focus{
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: var(--branco-20) !important;
   background-color: initial !important;
 }
 
