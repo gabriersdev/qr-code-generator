@@ -73,7 +73,7 @@
             <label for="floating-input-group trnsp">Seu texto aqui</label>
           </div>
         </div>
-        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'>Gerar</button>
+        <button type="submit" class="g-recaptcha btn btn-gerar-qr-code" data-sitekey="6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG" data-callback='onSubmit' data-action='submit'>Gerar</button>
       </div>
     </form>
   </main>
@@ -126,7 +126,7 @@
       const conteudo = document.querySelector('[data-conteudo="texto"]');
       const valor = conteudo.value.trim();
       
-      grecaptcha.execute('6LfrZqUlAAAAAHMYOi5V715vh6WW1abepxa-IXf1', {action: 'submit'}).then(function(token) {
+      grecaptcha.execute('6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG', {action: 'submit'}).then(function(token) {
         console.log(token);
         //
       });
@@ -228,7 +228,7 @@
     function onClick(e) {
       e.preventDefault();
       grecaptcha.ready(function() {
-        grecaptcha.execute('6LfrZqUlAAAAAHMYOi5V715vh6WW1abepxa-IXf1', {action: 'submit'}).then(function(token) {
+        grecaptcha.execute('6LfrZqUlAAAAAGUfogcIWFzH4yg9aFK-6YXoYoeG', {action: 'submit'}).then(function(token) {
           //
         });
       });
