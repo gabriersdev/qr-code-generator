@@ -98,7 +98,7 @@ import { isEmpty } from './modulos/utilitarios.js';
     const link = document.querySelector('#link-compartilhamento');
     
     try{
-      const url = new URL(window.location).origin;
+      const url = new URL(window.location).href;
       link.value = !isEmpty(url) ? url.toLowerCase().trim() : 'Link não atribuído'
     }catch(error){
       console.log(error);
